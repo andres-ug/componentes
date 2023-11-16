@@ -1,10 +1,43 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'inicio',
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  
+  
+  {
+    path: 'alert',
+    loadChildren: () => import('./pages/alert/alert.module').then( m => m.AlertPageModule)
+  },
+  {
+    path: 'action-sheet',
+    loadChildren: () => import('./pages/action-sheet/action-sheet.module').then( m => m.ActionSheetPageModule)
+  },
+  {
+    path: 'ion-avatar',
+    loadChildren: () => import('./pages/ion-avatar/ion-avatar.module').then( m => m.IonAvatarPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+    },
+  {
+    path: 'ion-button',
+    loadChildren: () => import('./pages/ion-button/ion-button.module').then( m => m.IonButtonPageModule)
+  },
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  
+  ];
+  @NgModule({
+  imports: [
+  RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules
+  })
+  ],
   exports: [RouterModule]
-})
-export class AppRoutingModule { }
+  })
+  export class AppRoutingModule { }
+
